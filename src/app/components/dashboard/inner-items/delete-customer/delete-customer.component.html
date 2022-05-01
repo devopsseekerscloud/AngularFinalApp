@@ -1,1 +1,24 @@
-<p>delete-customer works!</p>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Counter</th>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Salary</th>
+    <th>operate</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tempCustomer of list; index as num">
+    <td>{{num}}</td>
+    <td>{{tempCustomer?.id}}</td>
+    <td>{{tempCustomer?.name}}</td>
+    <td>{{tempCustomer?.address}}</td>
+    <td>{{tempCustomer?.salary}}</td>
+    <td>
+      <button (click)="delete(tempCustomer?.id)" class="btn btn-sm btn-danger">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

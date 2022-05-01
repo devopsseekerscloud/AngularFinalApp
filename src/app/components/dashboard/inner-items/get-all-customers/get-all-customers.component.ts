@@ -7,7 +7,7 @@ import {CustomerService} from "../../../../service/customer.service";
   styleUrls: ['./get-all-customers.component.scss']
 })
 export class GetAllCustomersComponent implements OnInit {
-  list: any[] = [];
+  list:Array<any> = [];
 
   constructor(private _customerService: CustomerService) {
   }
@@ -18,8 +18,7 @@ export class GetAllCustomersComponent implements OnInit {
 
   private loadAllData() {
     this._customerService.loadAll().subscribe(response => {
-      console.log(response)
-      this.list = response;
+      this.list = response.data;
     }, error => {
       console.log(error)
     })
