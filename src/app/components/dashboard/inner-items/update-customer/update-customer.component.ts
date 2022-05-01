@@ -10,13 +10,13 @@ import {CustomerDTO} from "../../../../dto/CustomerDTO";
 })
 export class UpdateCustomerComponent implements OnInit {
 
-  saveForm = new FormGroup({
+  customerForm = new FormGroup({
     id: new FormControl(null, [Validators.required]),
     name: new FormControl(null, [Validators.required]),
     address: new FormControl(null, [Validators.required]),
     salary: new FormControl(null, [Validators.required])
   });
-
+  selectedCustomer: any = null;
   constructor(private _customerService: CustomerService) {
   }
 
@@ -25,10 +25,10 @@ export class UpdateCustomerComponent implements OnInit {
 
   saveData() {
     const dto = new CustomerDTO(
-      this.saveForm.get('id')?.value,
-      this.saveForm.get('name')?.value,
-      this.saveForm.get('address')?.value,
-      this.saveForm.get('salary')?.value,
+      this.customerForm.get('id')?.value,
+      this.customerForm.get('name')?.value,
+      this.customerForm.get('address')?.value,
+      this.customerForm.get('salary')?.value,
     );
     this._customerService.saveCustomer(dto).subscribe(response => {
       console.log(response);
@@ -37,4 +37,11 @@ export class UpdateCustomerComponent implements OnInit {
     })
   }
 
+  search() {
+    this._customerService.searchCustomer(this.customerForm.get('id')?.value).subscribe(response => {
+      this.selectedCustomer = response.data;
+    }, error => {
+      console.log(error)
+    })
+  }
 }

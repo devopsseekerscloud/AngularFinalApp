@@ -7,7 +7,7 @@
       <div class="col-12">
         <mat-form-field style="width: 100%" appearance="outline">
           <mat-label>Customer Id</mat-label>
-          <input formControlName="id" type="text" matInput>
+          <input formControlName="id" type="text" matInput (keyup.enter)="search()">
         </mat-form-field>
       </div>
       <div class="col-12">
