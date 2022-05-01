@@ -1,1 +1,20 @@
-<p>get-all-customers works!</p>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Counter</th>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Salary</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tempCustomer of list; index as num">
+    <td>{{num}}</td>
+    <td>{{tempCustomer?.id}}</td>
+    <td>{{tempCustomer?.name}}</td>
+    <td>{{tempCustomer?.address}}</td>
+    <td>{{tempCustomer?.salary}}</td>
+  </tr>
+  </tbody>
+</table>

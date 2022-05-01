@@ -24,5 +24,9 @@ export class CustomerService {
     return this._http.get('http://localhost:8080/api/v1/customer/admin/member?id='+id);
   }
 
+  public loadAll(): Observable<any> {
+    return this._http.get('http://localhost:8080/api/v1/customer/admin/member/list');
+  }
+
 
 }
