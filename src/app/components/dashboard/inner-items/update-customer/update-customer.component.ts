@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomerService} from "../../../../service/customer.service";
 import {CustomerDTO} from "../../../../dto/CustomerDTO";
@@ -17,6 +17,7 @@ export class UpdateCustomerComponent implements OnInit {
     salary: new FormControl(null, [Validators.required])
   });
   selectedCustomer: any = null;
+
   constructor(private _customerService: CustomerService) {
   }
 
@@ -40,6 +41,11 @@ export class UpdateCustomerComponent implements OnInit {
   search() {
     this._customerService.searchCustomer(this.customerForm.get('id')?.value).subscribe(response => {
       this.selectedCustomer = response.data;
+      this.customerForm.patchValue({
+        name: this.selectedCustomer.name,
+        address: this.selectedCustomer.address,
+        salary: this.selectedCustomer.salary
+      })
     }, error => {
       console.log(error)
     })
